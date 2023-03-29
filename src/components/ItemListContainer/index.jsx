@@ -4,7 +4,7 @@ import Card from "../Card";
 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
-  const {name}=useParams()
+  const { name } = useParams();
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/category/${name}`)
       .then((response) => response.json())
@@ -16,12 +16,28 @@ const ItemListContainer = () => {
   console.log(name);
 
   return (
-    <div style={{display:"flex",flexWrap:"wrap",justifyContent:"center",alignItems:"center"}}>
-      {Object.keys(productos).length  ? productos.map((producto) => (
-        <Card key={producto.id} producto={producto} />
-      )): 
-      <h2>Bienvenidos a E-Store</h2>}
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNUILZPd3RgLv0aBeCV9J86r2kS-0nvB_nJQ&usqp=CAU" alt="" srcset="" />
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {Object.keys(productos).length ? (
+        productos.map((producto) => (
+          <Card key={producto.id} producto={producto} />
+        ))
+      ) : (
+        <div>
+          <h2>Bienvenidos a E-Store</h2>;
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNUILZPd3RgLv0aBeCV9J86r2kS-0nvB_nJQ&usqp=CAU"
+            alt=""
+            srcset=""
+          />{" "}
+        </div>
+      )}
     </div>
   );
 };
